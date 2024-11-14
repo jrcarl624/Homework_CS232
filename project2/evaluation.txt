@@ -1,0 +1,12 @@
+- freeTrieMemeory - josh
+- printTrieContents - conner + josh helped fix issues
+- addWordOccurrence - josh
+- indexPage function - conner + josh helped fix issues
+- main function - conner
+-
+
+I spent 4 hours and 31 minutes on this in total according to wakatime.
+
+Conner was a good partner he communicated well, with myself having more experience I let him have a go at debugging before I stepped in to debug, so he could gain some experience at diagnosing problems. I found the problem and fixed it after some tweaking to index page. Overall conner did pretty well, communicated well and overall it was a good experience.
+
+

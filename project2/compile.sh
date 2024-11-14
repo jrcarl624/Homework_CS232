@@ -1,0 +1,1 @@
+gcc -o indexPage -g -Wall ./src/indexPage.c 
