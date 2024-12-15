@@ -12,7 +12,6 @@ int crawl(const int MAX_N, PageNode **root, char *dirPath) {
   }
 
   while (page < MAX_N && fgets(startAddr, sizeof(startAddr), fp)) {
-    // fprintf(stderr,"\nsearch %s", startAddr);
     if (*startAddr == '\0')
       continue; // Skip empty lines
 
@@ -28,10 +27,9 @@ int crawl(const int MAX_N, PageNode **root, char *dirPath) {
     int hops = atoi(urlSplit + 1) + 1;
 
     // Taken from the first project
-    for (int hop = 0; (hop < hops )&& (page < MAX_N); ++hop) {
+    for (int hop = 0; (hop < hops) && (page < MAX_N); ++hop) {
 
       if (!isAddressIndexed(*root, startAddr)) {
-        // fprintf(stderr,"%s:%d\n", startAddr,hop);
 
         PageNode *node = createPageNode();
         if (node == NULL) {
@@ -43,6 +41,7 @@ int crawl(const int MAX_N, PageNode **root, char *dirPath) {
         node->addr[MAX_ADDR_LENGTH - 1] = '\0';
 
         if (indexPage(node)) {
+          freePageList(node);
           fclose(fp);
           return page; // Stop on indexing error
         }
@@ -52,6 +51,7 @@ int crawl(const int MAX_N, PageNode **root, char *dirPath) {
         } else {
           insertBackPage(*root, node);
         }
+
         ++page;
       }
       if (!getLink(startAddr, destAddr, MAX_ADDR_LENGTH)) {
@@ -134,9 +134,8 @@ int isAddressIndexed(const PageNode *node, const char *addr) {
 }
 
 void insertBackPage(PageNode *root, PageNode *node) {
-  if ((node == NULL) | (root == NULL))
+  if (node == NULL || root == NULL)
     return;
-
   if (root->next != NULL)
     return insertBackPage(root->next, node);
 
