@@ -29,7 +29,9 @@ int addWordOccurrence(const char *word, const int wordLength, TrieNode *root) {
 
   // Offset by a lowercase 'a' to get the index into the chars
   int index = (*word) - 'a';
-
+  if (index < 0 || index >= ALPHABET_SIZE) 
+    return 1; 
+  
   TrieNode *node = root->branches[index];
 
   // Check if it exists
