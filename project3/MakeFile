@@ -1,0 +1,11 @@
+CC = gcc
+CFLAGS = -Wall -g
+OBJS = alphaTrie.o crawler.o 
+
+webSearch: ./part1/webSearch.c ./part1/webSearch.h $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $< -o $@
+
+%.o: ./part1/%.c ./part1/%.h
+	$(CC) $(CFLAGS) -c $< -o $@
+clean:
+	rm *.o *~ mainProg
